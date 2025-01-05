@@ -1,0 +1,162 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="logo-section">
+      <h2>Welcome Back!</h2>
+      <p>Please login to your account</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="p-fluid">
+        <div class="form-group">
+          <input
+            placeholder="Username"
+            id="username"
+            type="text"
+            pInputText
+            formControlName="username"
+            [ngClass]="{
+              'ng-invalid ng-dirty': submitted
+            }"
+          />
+          <small
+            class="p-error"
+            *ngIf="submitted && f['username'].errors?.['username']"
+          >
+            Username is required
+          </small>
+          <small
+            class="p-error"
+            *ngIf="submitted && f['username'].errors?.['username']"
+          >
+            Please enter a valid Username
+          </small>
+        </div>
+
+        <div class="form-group">
+          <p-password
+            placeholder="Password"
+            id="password"
+            formControlName="password"
+            [toggleMask]="true"
+            [ngClass]="{
+              'ng-invalid ng-dirty': submitted
+            }"
+            [feedback]="false"
+          >
+          </p-password>
+          <small
+            class="p-error"
+            *ngIf="submitted && f['password'].errors?.['required']"
+          >
+            Password is required
+          </small>
+        </div>
+
+        <div class="form-options">
+          <div class="p-field-checkbox">
+            <p-checkbox
+              formControlName="rememberMe"
+              [binary]="true"
+              id="rememberMe"
+            >
+            </p-checkbox>
+            <label for="rememberMe">Remember me</label>
+          </div>
+          <a (click)="showForgetPasswordDialog()" class="forgot-password"
+            >Forgot Password?</a
+          >
+        </div>
+
+        <div class="button-container">
+          <p-button
+            type="submit"
+            label="Login"
+            [loading]="loading"
+            styleClass="p-button-raised p-button-lg"
+          >
+          </p-button>
+        </div>
+
+        <div class="register-link">
+          Don't have an account? <a routerLink="/signup">Sign up</a>
+        </div>
+        <div class="social-signup">
+          <p style="text-align: center; font: bold">Or sign up with</p>
+          <div class="social-buttons-container">
+            <p-button
+              label="Google"
+              icon="pi pi-google"
+              styleClass="p-button-rounded p-button-sm google-button"
+              (click)="onGoogleSignup()"
+            >
+            </p-button>
+            <p-button
+              label="Facebook"
+              icon="pi pi-facebook"
+              styleClass="p-button-rounded p-button-sm google-button"
+              (click)="onGoogleSignup()"
+            >
+            </p-button>
+            <p-button
+              label="GitHub"
+              icon="pi pi-github"
+              styleClass="p-button-rounded p-button-sm github-button"
+              (click)="onGithubSignup()"
+            >
+            </p-button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="card flex justify-center">
+  <p-dialog
+    header="Forgot Password?"
+    [modal]="true"
+    [(visible)]="visible"
+    [style]="{ width: '25rem' }"
+    contentStyleClass="custom-dialog-content"
+    headerStyleClass="custom-dialog-header"
+    footerStyleClass="custom-dialog-footer"
+  >
+    <h3 class="p-text-secondary block mb-8">
+      Your Email is required<span>*</span>
+    </h3>
+
+    <div class="flex items-center gap-4 mb-8">
+      <label for="email" class="font-semibold w-24" style="margin-right: 25px"
+        >Email</label
+      >
+      <input
+        pInputText
+        id="email"
+        class="flex-auto custom-input"
+        autocomplete="off"
+        style="margin-bottom: 25px"
+        [(ngModel)]="resetPasswordEmail"
+        (ngModelChange)="checkValidEmail($event)"
+      />
+    </div>
+    <small *ngIf="!resetPasswordEmail">Email is Required</small>
+    <small *ngIf="resetPasswordEmail && !isValidEmail"
+      >Please provide a valid email</small
+    >
+    <div class="flex justify-end">
+      <p-button
+        id="closeBtn"
+        label="Cancel"
+        severity="secondary"
+        class="custom-cancel-button"
+        (click)="visible = false"
+      ></p-button>
+      <p-button
+        [disabled]="!resetPasswordEmail || !isValidEmail"
+        label="Send Email"
+        class="custom-save-button"
+        (click)="confirmToSend()"
+      ></p-button>
+    </div>
+  </p-dialog>
+</div>

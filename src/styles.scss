@@ -1,0 +1,80 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.min.css";
+@import "primeicons/primeicons.css";
+
+// styles.scss or your component's scss file
+::ng-deep {
+    .p-toast {
+        .p-toast-message {
+            margin: 0 1rem 1rem 1rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            
+            &.custom-success-toast {
+                background: #f0fdf4;
+                border-left: 6px solid #22c55e;
+                .p-toast-message-text {
+                    color: #166534;
+                }
+                .p-toast-icon-close {
+                    color: #166534;
+                }
+            }
+            
+            &.custom-error-toast {
+                background: #fef2f2;
+                border-left: 6px solid #ef4444;
+                .p-toast-message-text {
+                    color: #991b1b;
+                }
+                .p-toast-icon-close {
+                    color: #991b1b;
+                }
+            }
+            
+            &.custom-warn-toast {
+                background: #fffbeb;
+                border-left: 6px solid #f59e0b;
+                .p-toast-message-text {
+                    color: #92400e;
+                }
+                .p-toast-icon-close {
+                    color: #92400e;
+                }
+            }
+            
+            &.custom-info-toast {
+                background: #f0f9ff;
+                border-left: 6px solid #0ea5e9;
+                .p-toast-message-text {
+                    color: #075985;
+                }
+                .p-toast-icon-close {
+                    color: #075985;
+                }
+            }
+
+            .custom-toast-content {
+                padding: 0.5rem 0;
+            }
+
+            .p-toast-message-content {
+                padding: 1rem;
+                display: flex;
+                align-items: center;
+            }
+
+            .p-toast-summary {
+                font-weight: 600;
+                font-size: 0.875rem;
+            }
+
+            .p-toast-detail {
+                font-size: 0.813rem;
+                margin-top: 0.25rem;
+            }
+        }
+    }
+}
+/* Your custom SCSS styles below */
